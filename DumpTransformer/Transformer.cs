@@ -8,11 +8,20 @@ namespace DumpTransformer
 {
     public static class Transformer
     {
-        private static string[] deletionSeq = {"SET statement_timeout = 0; SET lock_timeout = 0;SET client_encoding = 'UTF8';SET standard_conforming_strings = on;SET check_function_bodies = false;SET client_min_messages = warning;",
-                                              "SET search_path = public, pg_catalog;",
-                                              "REVOKE ALL ON SCHEMA public FROM PUBLIC;REVOKE ALL ON SCHEMA public FROM postgres;GRANT ALL ON SCHEMA public TO postgres;GRANT ALL ON SCHEMA public TO PUBLIC;",
-                                              "ALTER TABLE",
-                                              "OWNER TO postgres;"};
+        private static string[] deletionConstSeq =
+            {
+                "SET statement_timeout = 0; SET lock_timeout = 0;SET client_encoding = 'UTF8';SET standard_conforming_strings = on;SET check_function_bodies = false;SET client_min_messages = warning;"
+                ,
+                "SET search_path = public, pg_catalog;",
+                "REVOKE ALL ON SCHEMA public FROM PUBLIC;REVOKE ALL ON SCHEMA public FROM postgres;GRANT ALL ON SCHEMA public TO postgres;GRANT ALL ON SCHEMA public TO PUBLIC;"
+            };
+
+        private static string[] deletionTemplateSeq =
+            {
+                "ALTER TABLE",
+                "OWNER TO postgres;"
+            };
+
         public static List<string> Assemble(string[] dBStructure, string[] dBData)
         {
             var result = new List<string>(dBStructure);

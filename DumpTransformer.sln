@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpTransformer", "DumpTransformer\DumpTransformer.csproj", "{5C5806B2-DA16-4C4B-8885-807E8D4A4B85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpTransformerTest", "DumpTransformerTest\DumpTransformerTest.csproj", "{8BDAC12F-04AB-4982-858B-193E9A98984F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{5C5806B2-DA16-4C4B-8885-807E8D4A4B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C5806B2-DA16-4C4B-8885-807E8D4A4B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C5806B2-DA16-4C4B-8885-807E8D4A4B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BDAC12F-04AB-4982-858B-193E9A98984F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BDAC12F-04AB-4982-858B-193E9A98984F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BDAC12F-04AB-4982-858B-193E9A98984F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BDAC12F-04AB-4982-858B-193E9A98984F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
