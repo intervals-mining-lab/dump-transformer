@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DumpTransformer
@@ -60,10 +55,10 @@ namespace DumpTransformer
         {
             if (dBStructure != null && dBStructure.Length > 0 && dBData != null && dBData.Length > 0)
             {
-                List<string> assemliedLines = Transformer.Assemble(dBStructure, dBData);
-                List<string> clinedAssemlied = Transformer.CleanUp(assemliedLines);
-                StringBuilder output = new StringBuilder();
-                foreach (var str in clinedAssemlied)
+                var assembler = new Assembler(DateTime.Now.ToString(), DateTime.Now.ToString());
+                List<string> assemliedLines = assembler.Assemble(dBStructure, dBData);
+                var output = new StringBuilder();
+                foreach (var str in assemliedLines)
                 {
                     output.Append(str).AppendLine();
                 }
@@ -71,7 +66,7 @@ namespace DumpTransformer
             }
             else
             {
-                MessageBox.Show("Please, locate files (or correct) before generating.");
+                MessageBox.Show(@"Please, locate files (or correct) before generating.");
             }
         }
     }

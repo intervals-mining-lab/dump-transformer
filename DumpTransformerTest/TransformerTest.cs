@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DumpTransformer;
 using NUnit.Framework;
 
@@ -27,18 +24,22 @@ namespace DumpTransformerTest
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
                     "SELECT pg_catalog.setval('notation_id_seq', 9, true);"
                 };
-
+            string header = "Start Time Test";
+            string footer = "End Time Test"; ;
             List<string> expected = new List<string>
                 {
+                    "--" + header,
+                    "BEGIN;",
                     "SELECT * FROM \"Cars\" a WHERE a.Cost = '1000';",
-                    "-- test query",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
-                    "SELECT pg_catalog.setval('notation_id_seq', 9, true);"
+                    "SELECT pg_catalog.setval('notation_id_seq', 9, true);",
+                    "COMMIT;",
+                    "--" + footer
                 };
-            
-            List<string> actual = Transformer.Assemble(structureTest, dataTest);
+            Assembler assembler = new Assembler(header, footer);
+            List<string> actual = assembler.Assemble(structureTest, dataTest);
 
             Assert.AreEqual(expected.Count, actual.Count);
             for (int i = 0; i < actual.Count; i++)
