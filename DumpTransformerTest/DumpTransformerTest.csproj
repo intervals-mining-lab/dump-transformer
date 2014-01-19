@@ -42,7 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TransformerTest.cs" />
+    <Compile Include="AssemblerTest.cs" />
+    <Compile Include="Cleaners\BeginCommitAdderTest.cs" />
+    <Compile Include="Cleaners\CleanUpConstsTest.cs" />
+    <Compile Include="Cleaners\CleanUpEmptyLinesTest.cs" />
+    <Compile Include="Cleaners\CleanUpTeamplatesTest.cs" />
+    <Compile Include="Cleaners\CommentsCleanerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

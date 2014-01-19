@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace DumpTransformerTest
 {
     [TestFixture]
-    public class TransformerTest
+    public class AssemblerTest
     {
         [Test]
         public void AssembleTest()
@@ -47,12 +47,5 @@ namespace DumpTransformerTest
                 Assert.IsTrue(string.Equals(expected[i], actual[i]));
             }
         }
-
-        [Test]
-        public void CleanUp()
-        {
-            
-        }
-
     }
 }

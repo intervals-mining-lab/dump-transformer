@@ -12,7 +12,7 @@ namespace DumpTransformer
         {
             transformers = new List<ITransformer>
             {
-                new CommentsCleaner(),
+                new CleanUpComments(),
                 new CleanUpConsts(),
                 new CleanUpTemplates(),
                 new CleanUpEmptyLines(),

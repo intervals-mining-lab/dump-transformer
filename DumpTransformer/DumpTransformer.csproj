@@ -49,7 +49,7 @@
     <Compile Include="Cleaners\CleanUpConsts.cs" />
     <Compile Include="Cleaners\CleanUpEmptyLines.cs" />
     <Compile Include="Cleaners\CleanUpTemplates.cs" />
-    <Compile Include="Cleaners\CommentsCleaner.cs" />
+    <Compile Include="Cleaners\CleanUpComments.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DumpTransformer.Cleaners
 {
-    public class CommentsCleaner : ITransformer
+    public class CleanUpComments : ITransformer
     {
         public List<string> CleanUp(List<string> input)
         {
