@@ -1,25 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
-
-namespace DumpTransformer
+﻿namespace DumpTransformer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The form 1.
+    /// </summary>
     public partial class Form1 : Form
     {
-        private string[] dBStructure;
-        private string[] dBData;
+        /// <summary>
+        /// The database structure.
+        /// </summary>
+        private string[] databaseStructure;
 
+        /// <summary>
+        /// The database data.
+        /// </summary>
+        private string[] databaseData;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The button1 click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void Button1Click(object sender, EventArgs e)
         {
-            dBStructure = ReadFile(openFileDialog1);
-            if (dBStructure == null)
+            databaseStructure = ReadFile(openFileDialog1);
+            if (databaseStructure == null)
             {
                 label1.Text = @"File not located";
             }
@@ -29,39 +51,61 @@ namespace DumpTransformer
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The button2 click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void Button2Click(object sender, EventArgs e)
         {
-            dBData = ReadFile(openFileDialog2);
-            if (dBData == null)
-            {
-                label2.Text = @"File not located";
-            }
-            else
-            {
-                label2.Text = openFileDialog2.SafeFileName;
-            }
+            databaseData = ReadFile(openFileDialog2);
+            label2.Text = databaseData == null ? @"File not located" : openFileDialog2.SafeFileName;
         }
 
+        /// <summary>
+        /// The read file.
+        /// </summary>
+        /// <param name="fileDialog">
+        /// The file dialog.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string[]"/>.
+        /// </returns>
         private string[] ReadFile(OpenFileDialog fileDialog)
         {
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 return File.ReadAllLines(fileDialog.FileName);
             }
+
             return null;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The button 3 click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void Button3Click(object sender, EventArgs e)
         {
-            if (dBStructure != null && dBStructure.Length > 0 && dBData != null && dBData.Length > 0)
+            if (databaseStructure != null && databaseStructure.Length > 0 && databaseData != null && databaseData.Length > 0)
             {
                 var assembler = new Assembler(DateTime.Now.ToString(), DateTime.Now.ToString());
-                List<string> assemliedLines = assembler.Assemble(dBStructure, dBData);
+                List<string> assemliedLines = assembler.Assemble(databaseStructure, databaseData);
                 var output = new StringBuilder();
                 foreach (var str in assemliedLines)
                 {
                     output.Append(str).AppendLine();
                 }
+
                 richTextBox1.Text = output.ToString();
             }
             else

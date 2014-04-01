@@ -1,23 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using DumpTransformer;
-using NUnit.Framework;
-
-namespace DumpTransformerTest
+﻿namespace DumpTransformerTest
 {
+    using System.Collections.Generic;
+
+    using DumpTransformer;
+
+    using NUnit.Framework;
+
+    /// <summary>
+    /// The assembler test.
+    /// </summary>
     [TestFixture]
     public class AssemblerTest
     {
+        /// <summary>
+        /// The assemble test.
+        /// </summary>
         [Test]
         public void AssembleTest()
         {
-            string[] structureTest = new []
+            string[] structureTest = new[]
                 {
                     "SELECT * FROM \"Cars\" a WHERE a.Cost = '1000';",
                     "-- test query"
                 };
             
-            string[] dataTest = new []
+            string[] dataTest = new[]
                 {
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
@@ -25,8 +32,8 @@ namespace DumpTransformerTest
                     "SELECT pg_catalog.setval('notation_id_seq', 9, true);"
                 };
             string header = "Start Time Test";
-            string footer = "End Time Test"; ;
-            List<string> expected = new List<string>
+            string footer = "End Time Test";
+            var expected = new List<string>
                 {
                     "--" + header,
                     "BEGIN;",
@@ -38,7 +45,7 @@ namespace DumpTransformerTest
                     "COMMIT;",
                     "--" + footer
                 };
-            Assembler assembler = new Assembler(header, footer);
+            var assembler = new Assembler(header, footer);
             List<string> actual = assembler.Assemble(structureTest, dataTest);
 
             Assert.AreEqual(expected.Count, actual.Count);

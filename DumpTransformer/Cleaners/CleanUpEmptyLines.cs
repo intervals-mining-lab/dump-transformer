@@ -1,13 +1,25 @@
-﻿using System.Collections.Generic;
-
-namespace DumpTransformer.Cleaners
+﻿namespace DumpTransformer.Cleaners
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The clean up empty lines.
+    /// </summary>
     public class CleanUpEmptyLines : ITransformer
     {
+        /// <summary>
+        /// The clean up.
+        /// </summary>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
         public List<string> CleanUp(List<string> input)
         {
             bool nextIsEmpty = false;
-            List<string> result = new List<string>();
+            var result = new List<string>();
             for (int i = 0; i < input.Count; i++)
             {
                 if (!nextIsEmpty)
@@ -27,6 +39,7 @@ namespace DumpTransformer.Cleaners
                     }
                 }
             }
+
             return result;
         }
     }

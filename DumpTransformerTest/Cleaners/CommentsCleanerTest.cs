@@ -1,12 +1,20 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
-using DumpTransformer.Cleaners;
-
-namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformerTest.Cleaners
 {
+    using System.Collections.Generic;
+
+    using DumpTransformer.Cleaners;
+
+    using NUnit.Framework;
+
+    /// <summary>
+    /// The comments cleaner test.
+    /// </summary>
     [TestFixture]
-    class CommentsCleanerTest
+    public class CommentsCleanerTest
     {
+        /// <summary>
+        /// The clean up test.
+        /// </summary>
         [Test]
         public void CleanUpTest()
         {

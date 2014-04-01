@@ -1,13 +1,21 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
-using DumpTransformer.Cleaners;
-
-namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformerTest.Cleaners
 {
+    using System.Collections.Generic;
+
+    using DumpTransformer.Cleaners;
+
+    using NUnit.Framework;
+
+    /// <summary>
+    /// The clean up templates test.
+    /// </summary>
     [TestFixture]
-    class CleanUpTeamplatesTest
+    public class CleanUpTemplatesTest
     {
-        [Test]
+ /// <summary>
+        /// The clean up test.
+        /// </summary>
+               [Test]
         public void CleanUpTest()
         {
             var input = new List<string>

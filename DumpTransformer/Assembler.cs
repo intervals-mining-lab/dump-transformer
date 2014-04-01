@@ -1,16 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using DumpTransformer.Cleaners;
-
-namespace DumpTransformer
+﻿namespace DumpTransformer
 {
+    using System.Collections.Generic;
+
+    using DumpTransformer.Cleaners;
+
+    /// <summary>
+    /// The assembler.
+    /// </summary>
     public class Assembler
     {
+        /// <summary>
+        /// The transformers.
+        /// </summary>
         private readonly List<ITransformer> transformers;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Assembler"/> class.
+        /// </summary>
+        /// <param name="header">
+        /// The header.
+        /// </param>
+        /// <param name="footer">
+        /// The footer.
+        /// </param>
         public Assembler(string header, string footer)
         {
-            transformers = new List<ITransformer>
+            this.transformers = new List<ITransformer>
             {
                 new CleanUpComments(),
                 new CleanUpConsts(),
@@ -20,14 +35,27 @@ namespace DumpTransformer
             };
         }
 
-        public List<string> Assemble(string[] dBStructure, string[] dBData)
+        /// <summary>
+        /// The assemble.
+        /// </summary>
+        /// <param name="databsebStructure">
+        /// The database structure.
+        /// </param>
+        /// <param name="databaseData">
+        /// The database data.
+        /// </param>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        public List<string> Assemble(string[] databsebStructure, string[] databaseData)
         {
-            var result = new List<string>(dBStructure);
-            result.AddRange(dBData);
-            foreach (var transformer in transformers)
+            var result = new List<string>(databsebStructure);
+            result.AddRange(databaseData);
+            foreach (var transformer in this.transformers)
             {
                 result = transformer.CleanUp(result);
             }
+
             return result;
         }
     }
