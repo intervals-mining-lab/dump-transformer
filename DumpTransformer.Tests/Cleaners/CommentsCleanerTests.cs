@@ -1,4 +1,4 @@
-﻿namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformer.Tests.Cleaners
 {
     using System.Collections.Generic;
 
@@ -7,10 +7,10 @@
     using NUnit.Framework;
 
     /// <summary>
-    /// The comments cleaner test.
+    /// The comments cleaner tests.
     /// </summary>
     [TestFixture]
-    public class CommentsCleanerTest
+    public class CommentsCleanerTests : CleanerAbstractTests
     {
         /// <summary>
         /// The clean up test.
@@ -56,15 +56,8 @@
                     "SET search_path = public, pg_catalog;",
                     "REVOKE ALL ON SCHEMA public FROM PUBLIC;",
                 };
-            var cleanUpComments = new CleanUpComments();
-            List<string> actual = cleanUpComments.CleanUp(input);
-            
-            Assert.AreEqual(expected.Count, actual.Count);
 
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.True(string.Equals(expected[i], actual[i]));
-            }
+            this.CleanUpTest(new CleanUpComments(), input, expected);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DumpTransformerTest
+﻿namespace DumpTransformer.Tests
 {
     using System.Collections.Generic;
 
@@ -7,10 +7,10 @@
     using NUnit.Framework;
 
     /// <summary>
-    /// The assembler test.
+    /// The assembler tests.
     /// </summary>
     [TestFixture]
-    public class AssemblerTest
+    public class AssemblerTests
     {
         /// <summary>
         /// The assemble test.
@@ -18,24 +18,25 @@
         [Test]
         public void AssembleTest()
         {
-            string[] structureTest = new[]
+            string[] structureTest = 
                 {
                     "SELECT * FROM \"Cars\" a WHERE a.Cost = '1000';",
                     "-- test query"
                 };
             
-            string[] dataTest = new[]
+            string[] dataTest = 
                 {
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
                     "SELECT pg_catalog.setval('notation_id_seq', 9, true);"
                 };
-            string header = "Start Time Test";
-            string footer = "End Time Test";
-            var expected = new List<string>
+
+            const string Header = "Start Time Test";
+            const string Footer = "End Time Test";
+            string[] expected =
                 {
-                    "--" + header,
+                    "--" + Header,
                     "BEGIN;",
                     "SELECT * FROM \"Cars\" a WHERE a.Cost = '1000';",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
@@ -43,12 +44,13 @@
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
                     "SELECT pg_catalog.setval('notation_id_seq', 9, true);",
                     "COMMIT;",
-                    "--" + footer
+                    "--" + Footer
                 };
-            var assembler = new Assembler(header, footer);
+
+            var assembler = new Assembler(Header, Footer);
             List<string> actual = assembler.Assemble(structureTest, dataTest);
 
-            Assert.AreEqual(expected.Count, actual.Count);
+            Assert.AreEqual(expected.Length, actual.Count);
             for (int i = 0; i < actual.Count; i++)
             {
                 Assert.IsTrue(string.Equals(expected[i], actual[i]));

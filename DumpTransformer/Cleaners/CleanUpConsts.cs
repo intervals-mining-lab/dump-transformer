@@ -40,7 +40,7 @@
             var result = new List<string>();
             foreach (var line in input)
             {
-                bool isValid = deletionConstantSequence.All(delConst => !line.Contains(delConst));
+                bool isValid = this.deletionConstantSequence.All(delConst => !line.Contains(delConst));
                 if (isValid)
                 {
                     result.Add(line);

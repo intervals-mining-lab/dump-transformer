@@ -1,4 +1,4 @@
-﻿namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformer.Tests.Cleaners
 {
     using System.Collections.Generic;
 
@@ -7,10 +7,10 @@
     using NUnit.Framework;
 
     /// <summary>
-    /// The clean up empty lines test.
+    /// The clean up empty lines tests.
     /// </summary>
     [TestFixture]
-    public class CleanUpEmptyLinesTest
+    public class CleanUpEmptyLinesTests : CleanerAbstractTests
     {
         /// <summary>
         /// The clean up test.
@@ -58,15 +58,8 @@
                     "",
                     "SET standard_conforming_strings = on;",
                 };
-            var cleanUpEmptyLines = new CleanUpEmptyLines();
-            List<string> actual = cleanUpEmptyLines.CleanUp(input);
-            
-            Assert.AreEqual(expected.Count, actual.Count);
 
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.True(string.Equals(expected[i], actual[i]));
-            }
+            this.CleanUpTest(new CleanUpEmptyLines(), input, expected);
         }
     }
 }

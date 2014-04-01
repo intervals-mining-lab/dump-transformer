@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpTransformer", "DumpTransformer\DumpTransformer.csproj", "{5C5806B2-DA16-4C4B-8885-807E8D4A4B85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpTransformerTest", "DumpTransformerTest\DumpTransformerTest.csproj", "{8BDAC12F-04AB-4982-858B-193E9A98984F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpTransformer.Tests", "DumpTransformer.Tests\DumpTransformer.Tests.csproj", "{8BDAC12F-04AB-4982-858B-193E9A98984F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

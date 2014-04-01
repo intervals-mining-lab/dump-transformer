@@ -1,4 +1,4 @@
-﻿namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformer.Tests.Cleaners
 {
     using System.Collections.Generic;
 
@@ -7,19 +7,19 @@
     using NUnit.Framework;
 
     /// <summary>
-    /// The begin commit adder test.
+    /// The begin commit adder tests.
     /// </summary>
     [TestFixture]
-    public class BeginCommitAdderTest
+    public class BeginCommitAdderTests : CleanerAbstractTests
     {
  /// <summary>
         /// The clean up test.
         /// </summary>
-               [Test]
+        [Test]
         public void CleanUpTest()
         {
-            string header = "Start Time";
-            string footer = "End Time";
+            const string Header = "Start Time";
+            const string Footer = "End Time";
 
             var input = new List<string>
                 {
@@ -30,23 +30,16 @@
 
             var expected = new List<string>
                 {
-                    "--" + header,
+                    "--" + Header,
                     "BEGIN;",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
                     "SELECT pg_catalog.setval('notation_id_seq', 9, true);",
                     "COMMIT;",
-                    "--" + footer
+                    "--" + Footer
                 };
-            var beginCommitAdder = new BeginCommitAdder(header, footer);
-            List<string> actual = beginCommitAdder.CleanUp(input);
             
-            Assert.AreEqual(expected.Count, actual.Count);
-
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.True(string.Equals(expected[i], actual[i]));
-            }
+            this.CleanUpTest(new BeginCommitAdder(Header, Footer), input, expected);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformer.Tests.Cleaners
 {
     using System.Collections.Generic;
 
@@ -10,7 +10,7 @@
     /// The clean up templates test.
     /// </summary>
     [TestFixture]
-    public class CleanUpTemplatesTest
+    public class CleanUpTemplatesTest : CleanerAbstractTests
     {
  /// <summary>
         /// The clean up test.
@@ -56,15 +56,8 @@
                     "REVOKE ALL ON SCHEMA public FROM PUBLIC;",
                     "SET standard_conforming_strings = on;",
                 };
-            var cleanUpTemplates = new CleanUpTemplates();
-            List<string> actual = cleanUpTemplates.CleanUp(input);
-            
-            Assert.AreEqual(expected.Count, actual.Count);
 
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.True(string.Equals(expected[i], actual[i]));
-            }
+            this.CleanUpTest(new CleanUpTemplates(), input, expected);
         }
     }
 }

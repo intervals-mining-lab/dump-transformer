@@ -1,4 +1,4 @@
-﻿namespace DumpTransformerTest.Cleaners
+﻿namespace DumpTransformer.Tests.Cleaners
 {
     using System.Collections.Generic;
 
@@ -7,10 +7,10 @@
     using NUnit.Framework;
 
     /// <summary>
-    /// The clean up constants test.
+    /// The clean up constants tests.
     /// </summary>
     [TestFixture]
-    public class CleanUpConstsTest
+    public class CleanUpConstsTests : CleanerAbstractTests
     {
         /// <summary>
         /// The clean up test.
@@ -46,15 +46,8 @@
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
                     "SELECT pg_catalog.setval('notation_id_seq', 9, true);"
                 };
-            var cleanUpConsts = new CleanUpConsts();
-            List<string> actual = cleanUpConsts.CleanUp(input);
-            
-            Assert.AreEqual(expected.Count, actual.Count);
 
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.True(string.Equals(expected[i], actual[i]));
-            }
+            this.CleanUpTest(new CleanUpConsts(), input, expected);
         }
     }
 }
