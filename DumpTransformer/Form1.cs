@@ -106,6 +106,8 @@
                     output.Append(str).AppendLine();
                 }
 
+                File.WriteAllText("Output.sql", output.ToString());
+
                 richTextBox1.Text = output.ToString();
             }
             else
