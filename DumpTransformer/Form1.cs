@@ -27,6 +27,7 @@
         public Form1()
         {
             InitializeComponent();
+            openFileDialog1.Filter = @"*.sql|*.sql";
         }
 
         /// <summary>
