@@ -17,11 +17,6 @@
         private string[] databaseStructure;
 
         /// <summary>
-        /// The database data.
-        /// </summary>
-        private string[] databaseData;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Form1"/> class.
         /// </summary>
         public Form1()
@@ -50,21 +45,6 @@
             {
                 label1.Text = openFileDialog1.SafeFileName;
             }
-        }
-
-        /// <summary>
-        /// The button2 click.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private void Button2Click(object sender, EventArgs e)
-        {
-            databaseData = ReadFile(openFileDialog2);
-            label2.Text = databaseData == null ? @"File not located" : openFileDialog2.SafeFileName;
         }
 
         /// <summary>
@@ -97,10 +77,10 @@
         /// </param>
         private void Button3Click(object sender, EventArgs e)
         {
-            if (databaseStructure != null && databaseStructure.Length > 0 && databaseData != null && databaseData.Length > 0)
+            if (databaseStructure != null && databaseStructure.Length > 0)
             {
                 var assembler = new Assembler(DateTime.Now.ToString(), DateTime.Now.ToString());
-                List<string> assemliedLines = assembler.Assemble(databaseStructure, databaseData);
+                List<string> assemliedLines = assembler.Assemble(databaseStructure);
                 var output = new StringBuilder();
                 foreach (var str in assemliedLines)
                 {
@@ -113,7 +93,7 @@
             }
             else
             {
-                MessageBox.Show(@"Please, locate files (or correct) before generating.");
+                MessageBox.Show(@"Please, locate file before generating.");
             }
         }
     }

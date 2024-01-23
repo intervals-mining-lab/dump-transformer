@@ -47,10 +47,9 @@
         /// <returns>
         /// The <see cref="List"/>.
         /// </returns>
-        public List<string> Assemble(string[] databsebStructure, string[] databaseData)
+        public List<string> Assemble(string[] databsebStructure)
         {
             var result = new List<string>(databsebStructure);
-            result.AddRange(databaseData);
             foreach (var transformer in this.transformers)
             {
                 result = transformer.CleanUp(result);
