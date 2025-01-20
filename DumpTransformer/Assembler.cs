@@ -47,9 +47,9 @@
         /// <returns>
         /// The <see cref="List"/>.
         /// </returns>
-        public List<string> Assemble(string[] databsebStructure)
+        public List<string> Assemble(string[] databseStructure)
         {
-            var result = new List<string>(databsebStructure);
+            var result = new List<string>(databseStructure);
             foreach (var transformer in this.transformers)
             {
                 result = transformer.CleanUp(result);

@@ -21,11 +21,7 @@
             string[] structureTest = 
                 {
                     "SELECT * FROM \"Cars\" a WHERE a.Cost = '1000';",
-                    "-- test query"
-                };
-            
-            string[] dataTest = 
-                {
+                    "-- test query",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('nature_id_seq', 3, true);",
                     "SELECT pg_catalog.setval('note_symbol_id_seq', 7, true);",
@@ -48,12 +44,12 @@
                 };
 
             var assembler = new Assembler(Header, Footer);
-            List<string> actual = assembler.Assemble(structureTest, dataTest);
+            List<string> actual = assembler.Assemble(structureTest);
 
-            Assert.AreEqual(expected.Length, actual.Count);
+            Assert.That(expected, Has.Length.EqualTo(actual.Count));
             for (int i = 0; i < actual.Count; i++)
             {
-                Assert.IsTrue(string.Equals(expected[i], actual[i]));
+                Assert.That(expected[i], Is.EqualTo(actual[i]));
             }
         }
     }

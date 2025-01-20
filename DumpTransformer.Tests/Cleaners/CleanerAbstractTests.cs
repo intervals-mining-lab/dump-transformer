@@ -27,11 +27,11 @@
         {
             List<string> actual = cleaner.CleanUp(input);
 
-            Assert.AreEqual(expected.Count, actual.Count);
+            Assert.That(expected, Has.Count.EqualTo(actual.Count));
 
             for (int i = 0; i < actual.Count; i++)
             {
-                Assert.True(string.Equals(expected[i], actual[i]));
+                Assert.That(expected[i], Is.EqualTo(actual[i]));
             }
         }
     }
